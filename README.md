@@ -71,3 +71,50 @@
 
 ### 导师反馈
 同意构思
+
+## 11/15工作总结
+
+### 阅读文件
+
+- 阅读[我的第一个caffe Android程序](https://blog.csdn.net/mogoweb/article/details/79796713)，了解完成客户端人眼识别的主要工作有
+      
+      1. 使用docker编译caffe-android-lib
+      2. 使用java代码编译并运行步骤1中编译好的头文件和库文件
+
+- 阅读[andorid手机远程控制电脑](https://gitee.com/lujianing/android-remote-control-computer)，了解完成客户端（手机）与服务端（电脑）控制的主要工作有
+
+      1. socket编程，手机和电脑在同一网段，电脑开启监听某个端口，手机向电脑端口发送消息
+      2. 服务端调用鼠标移动或键盘相应api
+      3. 客户端监听相应相应发送到服务端
+
+### 配置客户端开发工作环境
+
+- 开发环境：Windows 10家庭版 #1803
+
+- 安装docker
+      选择安装Docker Toolbox[Install Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)
+
+      ![docker-machine](./pic/docker-machine.png)
+
+- 使用docker编译[caffe-android-lib](https://github.com/sh1r0/caffe-android-lib)
+
+      ```
+      git clone --recursive https://github.com/sh1r0/caffe-android-lib.git
+      cd caffe-android-lib
+      # build image
+      docker build -t caffe-android-lib .
+      # run a container for building your own caffe-android-lib, e.g.,
+      docker run --rm --name caffe-android-builder \
+      -e ANDROID_ABI=x86_64 \
+      -e N_JOBS=2 \
+      -v $(pwd)/android_lib/x86_64:/caffe-android-lib/android_lib \
+      caffe-android-lib ./build.sh
+      ```
+
+- 安装Android Studio
+
+      > Android Studio 3.1.2
+      > Build #AI-173.4720617, built on April 14, 2018
+      > JRE: 1.8.0_152-release-1024-b02 amd64
+      > JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+      > Windows 10 10.0

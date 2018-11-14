@@ -94,11 +94,11 @@
 - 安装docker
       选择安装Docker Toolbox[Install Docker Toolbox on Windows](https://docs.docker.com/toolbox/toolbox_install_windows/)
 
-      ![docker-machine](./pic/docker-machine.png)
+  ![docker-machine](./pic/docker-machine.png)
 
 - 使用docker编译[caffe-android-lib](https://github.com/sh1r0/caffe-android-lib)
 
-      ```
+    ```
       git clone --recursive https://github.com/sh1r0/caffe-android-lib.git
       cd caffe-android-lib
       # build image
@@ -109,12 +109,31 @@
       -e N_JOBS=2 \
       -v $(pwd)/android_lib/x86_64:/caffe-android-lib/android_lib \
       caffe-android-lib ./build.sh
-      ```
+  ```
 
 - 安装Android Studio
 
-      > Android Studio 3.1.2
-      > Build #AI-173.4720617, built on April 14, 2018
-      > JRE: 1.8.0_152-release-1024-b02 amd64
-      > JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
-      > Windows 10 10.0
+  ```
+  Android Studio 3.1.2
+  Build #AI-173.4720617, built on April 14, 2018
+  JRE: 1.8.0_152-release-1024-b02 amd64
+  JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+  Windows 10 10.0
+  ```
+
+
+## 遇到问题
+
+- 使用docker编译caffe-android-lib时，报错：
+
+  > The command '/bin/sh -c curl -SL     http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip     -o /tmp/android-ndk.zip     && unzip -q -d /opt /tmp/android-ndk.zip     && rm -f /tmp/android-ndk.zip' returned a non-zero code: 18
+
+  查询得知，可能是docker hub修改源导致拉取资源失败，在DockerFile中把jdk和tomcat提高到当前版本下的最新更新解决。即增加内容
+
+  ```
+      # 设置环境变量
+      ENV JAVA_HOME /home/jdk1.8.0_162
+      ENV CATALINA_HOME /home/tomcat
+      ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
+      ENV TZ Asia/Shanghai
+  ```

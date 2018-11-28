@@ -122,7 +122,7 @@
   ```
 
 
-## 遇到问题
+### 遇到问题
 
 - 使用docker编译caffe-android-lib时，报错：
 
@@ -137,3 +137,75 @@
       ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
       ENV TZ Asia/Shanghai
   ```
+
+## 11/30工作总结
+
+### 前情回顾
+
+- 经过努力，在windows上build[caffe-android-lib](https://github.com/sh1r0/caffe-android-lib)失败，具体参考[Caffe on windows???](https://github.com/sh1r0/caffe-android-lib/issues/91)，作者表明没有计划支持windows平台。
+- 转而使用[ncnn](https://github.com/Tencent/ncnn/)，文档表明ncnn对各平台都有较好的支持，使用者较多，且维护人员较为活跃，经过评估开发友好。
+
+### 编译ncnn
+
+- 参考文档：[cmake 打包 android sdk](https://github.com/Tencent/ncnn/wiki/cmake-%E6%89%93%E5%8C%85-android-sdk)
+
+- 编译环境：ubuntu on windows:
+
+      No LSB modules are available.
+      Distributor ID: Ubuntu
+      Description:    Ubuntu 18.04.1 LTS
+      Release:        18.04
+      Codename:       bionic
+
+- 编译工具：
+
+      android-ndk-r16b：GNU Make 3.81
+      cmake：version 3.10.2
+
+- 编译过程
+
+  1. 在ncnn文件夹根目录下执行：
+
+  ```
+      mkdir build-android
+      cd build-android
+      cmake -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
+      -DANDROID_ABI="armeabi-v7a" -DANDROID_ARM_NEON=ON \
+      -DANDROID_PLATFORM=android-14 ..
+      make
+      make install
+  ```
+
+      执行结果：
+      
+  ![build-ncnn](./pic/build-ncnn.png)
+  
+      在ncnn\build-android\install目录下得到include和lib文件。
+
+  2. 在项目中添加demo中的cpp及mk文件，在jni文件夹执行：ndk-build
+
+  ![ndk-build](./pic/ndk-build.png)
+      
+      在libs\armeabi-v7a目录下得到.so文件。
+      
+  3. 使用android studio编译，运行项目
+
+###遇到问题
+
+- 执行ndk-build时报错：
+
+  > /mnt/d/Study/paper/EyeTracker/consumer/EyeTracker/app/src/main/jni/squeezencnn_jni.cpp:81: error: undefined reference to 'ncnn::Net::load_param(unsigned char const*)'
+
+  检查发现，Android.mk文件中install目录地址错误地指向了build文件夹而不是为android编译的build-android，修改后解决。
+
+- 执行ndk-build时报错：
+  > /mnt/d/Study/paper/EyeTracker/consumer/ncnn/src/mat.cpp:168: error: undefined reference to '__kmpc_fork_call'
+
+  查询[issue#292](https://github.com/Tencent/ncnn/issues/292)得知，注释掉Application.mk文件中的 NDK_TOOLCHAIN_VERSION := 4.9 解决。
+
+- 执行ndk-build时报错：
+  >  error: arithmetic on a pointer to void
+  
+  >  const float* prob = out.data + out.cstep * j;
+
+  查询[issue#256](https://github.com/Tencent/ncnn/issues/256)得知，修改squeezencnn_jni.cpp文件中194行为  const float* prob = out.channel(j); 解决。

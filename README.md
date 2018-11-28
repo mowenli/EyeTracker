@@ -190,7 +190,15 @@
       
   3. 使用android studio编译，运行项目
 
-###遇到问题
+- 模型转换
+
+  由于ncnn加载模型为param和bin格式，需要对已有的caffe模型进行转换，具体参考[ncnn 组件使用指北 alexnet](https://github.com/Tencent/ncnn/wiki/ncnn-%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97-alexnet)
+
+  使用 caffe2ncnn 工具转换为 ncnn 的网络描述和模型
+
+  > caffe2ncnn deploy.prototxt bvlc_alexnet.caffemodel alexnet.param alexnet.bin
+
+### 遇到问题
 
 - 执行ndk-build时报错：
 

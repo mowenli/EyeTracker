@@ -5,6 +5,7 @@ NCNN_INSTALL_PATH := /mnt/d/Study/paper/EyeTracker/consumer/ncnn/build-android/i
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := ncnn
+#LOCAL_SRC_FILES := $(NCNN_INSTALL_PATH)/$(TARGET_ARCH_ABI)/libncnn.a
 LOCAL_SRC_FILES := $(NCNN_INSTALL_PATH)/lib/libncnn.a
 include $(PREBUILT_STATIC_LIBRARY)
 

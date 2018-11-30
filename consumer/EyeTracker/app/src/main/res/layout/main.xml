@@ -25,7 +25,8 @@
         android:id="@+id/infoResult"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="~~~"
+        android:textColor="#FFFFFF"/>
 
     <ImageView
         android:id="@+id/imageView"

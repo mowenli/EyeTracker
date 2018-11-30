@@ -198,6 +198,10 @@
 
   > caffe2ncnn deploy.prototxt bvlc_alexnet.caffemodel alexnet.param alexnet.bin
 
+- 编写java文件
+
+  完成 EyeTrackerActivity.java 、 EyetrackerNcnn.java 及xml文件、mk文件的编写，eyetracker_jni.cpp待完成
+
 ### 遇到问题
 
 - 执行ndk-build时报错：

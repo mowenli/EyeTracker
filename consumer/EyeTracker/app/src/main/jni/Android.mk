@@ -11,8 +11,8 @@ include $(PREBUILT_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := squeezencnn
-LOCAL_SRC_FILES := squeezencnn_jni.cpp
+LOCAL_MODULE := eyetracker
+LOCAL_SRC_FILES := eyetracker_jni.cpp
 
 LOCAL_C_INCLUDES := $(NCNN_INSTALL_PATH)/include
 

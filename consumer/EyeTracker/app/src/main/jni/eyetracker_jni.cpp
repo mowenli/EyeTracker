@@ -98,15 +98,15 @@ JNIEXPORT jstring JNICALL Java_com_example_stellasong_eyetracker_EyetrackerNcnn_
             return NULL;
         if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888)
             return NULL;
-
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "1");
         void* indata;
         AndroidBitmap_lockPixels(env, image_left, &indata);
 
         in_left = ncnn::Mat::from_pixels((const unsigned char*)indata, ncnn::Mat::PIXEL_RGBA2BGR, width, height);
-
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "2");
         AndroidBitmap_unlockPixels(env, image_left);
 
-
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "3");
         AndroidBitmap_getInfo(env, image_right, &info);
         width = info.width;
         height = info.height;
@@ -114,14 +114,14 @@ JNIEXPORT jstring JNICALL Java_com_example_stellasong_eyetracker_EyetrackerNcnn_
             return NULL;
         if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888)
             return NULL;
-
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "4");
         AndroidBitmap_lockPixels(env, image_right, &indata);
 
         in_right = ncnn::Mat::from_pixels((const unsigned char*)indata, ncnn::Mat::PIXEL_RGBA2BGR, width, height);
 
         AndroidBitmap_unlockPixels(env, image_right);
 
-
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "5");
         AndroidBitmap_getInfo(env, image_face, &info);
         width = info.width;
         height = info.height;
@@ -129,13 +129,13 @@ JNIEXPORT jstring JNICALL Java_com_example_stellasong_eyetracker_EyetrackerNcnn_
             return NULL;
         if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888)
             return NULL;
-
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "6");
         AndroidBitmap_lockPixels(env, image_face, &indata);
 
         in_face = ncnn::Mat::from_pixels((const unsigned char*)indata, ncnn::Mat::PIXEL_RGBA2BGR, width, height);
 
         AndroidBitmap_unlockPixels(env, image_face);
-
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "7");
 
         bool tmp[25][25];
         for (int i = 0; i < 625; i++) {
@@ -152,7 +152,7 @@ JNIEXPORT jstring JNICALL Java_com_example_stellasong_eyetracker_EyetrackerNcnn_
     std::vector<float> cls_scores;
     {
         ncnn::Extractor ex = eyetracker.create_extractor();
-
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "8");
         ex.input("image_left", in_left);
         ex.input("image_right", in_right);
         ex.input("image_face", in_face);
@@ -160,9 +160,12 @@ JNIEXPORT jstring JNICALL Java_com_example_stellasong_eyetracker_EyetrackerNcnn_
 
         ncnn::Mat out;
         ex.extract("fc3", out);
-
+//__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "9 ：%d", out.w);
+//__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "9 ：%d", out.h);
+__android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "9 ：%d", out.c);
         cls_scores.resize(out.w);
         for (int j=0; j<out.w; j++) {
+        __android_log_print(ANDROID_LOG_DEBUG, "EyeTracker", "10 ：%d %f", j, out[j]);
             cls_scores[j] = out[j];
         }
     }

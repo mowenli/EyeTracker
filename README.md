@@ -221,3 +221,9 @@
   >  const float* prob = out.data + out.cstep * j;
 
   查询[issue#256](https://github.com/Tencent/ncnn/issues/256)得知，修改squeezencnn_jni.cpp文件中194行为  const float* prob = out.channel(j); 解决。
+
+## 12/15工作总结
+
+完成服务端编程，实现手机通过socket连接电脑，可以完成移动鼠标、按下键盘的操作。
+
+使用方法：\server 目录下执行 java -jar EyeTrackerServer.jar

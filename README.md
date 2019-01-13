@@ -253,19 +253,15 @@
         [EyeTracker/android-studio]> ./gradlew assembleDebug
         ```
 
-    4.恢复顶层`CMakeLists.txt`，执行：
-
-        ```
-        [EyeTracker/android-studio]> ./gradlew assembleDebug
-        ```
+    4.恢复顶层`CMakeLists.txt`，执行：`[EyeTracker/android-studio]> ./gradlew assembleDebug`
 
 - 完成客户端java程序调用人眼识别方案的C++代码，即使用继承于GLSurfaceView的控件，在Render中完成与C++代码的接口调用，完成摄像头捕捉的内容识别眼球运动的实时绘制。
 
-  ![consumer](./pic/consumer-1.png)
+  ![consumer](./pic/consumer-1.jpg)
 
 - 完成客户端与服务端通信，即使用java原生DatagramSocket库完成向服务端传递数据并接受反馈，现有交互方式为客户端检测到眼球中心向上下左右四个方向偏移超过阈值，则向服务端发送移动鼠标的指令。
 
-  ![consumer](./pic/consumer-2.png)
+  ![consumer](./pic/consumer-2.jpg)
 
 ## TODO
 

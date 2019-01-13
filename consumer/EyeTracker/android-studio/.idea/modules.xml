@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../src/examples/facefilter/android-studio/app/.._src_examples_facefilter_android-studio_app.iml" filepath="$PROJECT_DIR$/../src/examples/facefilter/android-studio/app/.._src_examples_facefilter_android-studio_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-studio.iml" filepath="$PROJECT_DIR$/android-studio.iml" />
+    </modules>
+  </component>
+</project>

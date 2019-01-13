@@ -227,3 +227,48 @@
 完成服务端编程，实现手机通过socket连接电脑，可以完成移动鼠标、按下键盘的操作。
 
 使用方法：\server 目录下执行 java -jar EyeTrackerServer.jar
+
+## 1/15工作总结
+
+- 使用[elucideye/drishti项目](https://github.com/elucideye/drishti)提供的移动端人眼识别方案，具体编译方法：
+
+    1. 配置以下工具到所需要版本以上
+
+        - CMake 3.9.2+
+        - Ninja
+        - Android Studio 3.2.1
+
+    2. 在中设置sdk和ndk文件路径
+
+        ```
+        ndk.dir=/home/username/Android/Sdk/ndk-bundle
+        sdk.dir=/home/username/Android/Sdk
+        cmake.dir=/opt/cmake
+        ```
+
+    3. 设置顶层`CMakeLists.txt`中`DRISHTI_DEBUG_STOP`为TRUE，执行：
+
+        ```
+        [EyeTracker]> cd android-studio
+        [EyeTracker/android-studio]> ./gradlew assembleDebug
+        ```
+
+    4.恢复顶层`CMakeLists.txt`，执行：
+
+        ```
+        [EyeTracker/android-studio]> ./gradlew assembleDebug
+        ```
+
+- 完成客户端java程序调用人眼识别方案的C++代码，即使用继承于GLSurfaceView的控件，在Render中完成与C++代码的接口调用，完成摄像头捕捉的内容识别眼球运动的实时绘制。
+
+  ![consumer](./pic/consumer-1.png)
+
+- 完成客户端与服务端通信，即使用java原生DatagramSocket库完成向服务端传递数据并接受反馈，现有交互方式为客户端检测到眼球中心向上下左右四个方向偏移超过阈值，则向服务端发送移动鼠标的指令。
+
+  ![consumer](./pic/consumer-2.png)
+
+## TODO
+
+1. 当前检测眼球移动后发送指令的偏移阈值不够合理，可能出现过于灵敏或无反应的情况，需要测试合理的阈值并修改。
+
+2. 当前交互方式仅移动鼠标，点击鼠标及左右按键的操作囿于客户端检测眼球移动的精度限制，无法做出比较合适的反馈，初步计划修改客户端功能，增加眼球持续固定于同一位置提供的客户端功能。

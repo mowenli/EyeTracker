@@ -157,21 +157,20 @@ public class RemoteControlServer extends JFrame {
 	}
 		
 	public void start(){
-		if(menux==0){   //menux信号量 0表示未开启 1表示开启 2表示暂停
-			serverthread  =new ServerThread();
+		if (menux == 0) {   //menux信号量 0表示未开启 1表示开启 2表示暂停
+			serverthread = new ServerThread();
 			serverthread.start();
-			menux=1;
+			menux = 1;
 			messagebox.setText("开启信息监听");
 			field.setEditable(false);
-		}
-		if(menux==2){
+		} else if (menux == 2) {
 			serverthread.resume();
-			menux=1;
+			menux = 1;
 			messagebox.setText("恢复信息监听");
 		}
 	}
 	
-	public void stop(){
+	public void stop() {
 		if(menux==1){
 			serverthread.suspend();
 			menux=2;
@@ -186,30 +185,41 @@ public class RemoteControlServer extends JFrame {
     		try {
     			//创建一个DatagramSocket对象，并指定监听的端口号
     			DatagramSocket socket;
-    			try{
+    			try {
     				socket = new DatagramSocket(port);
-    			}catch(Exception e){
+    			} catch(Exception e) {
     				messagebox.setText("端口被使用,请更换端口");
     				startbutton.setEnabled(true);
     				stopbutton.setEnabled(false);
-    				menux=0;
+    				menux = 0;
     				field.setEditable(true);
     				return;
     			}
 				byte data [] = new byte[1024];
 				//创建一个空的DatagramPacket对象
-				DatagramPacket packet = new DatagramPacket(data,data.length);
+				DatagramPacket packet = new DatagramPacket(data, data.length);
 				//使用receive方法接收客户端所发送的数据
 				System.out.println("开启端口监听"+socket.getLocalPort());
-				while(true){
+				while(true) {
 					socket.receive(packet);
 					message = new String(packet.getData(),packet.getOffset(),packet.getLength());
 					System.out.println("message--->" + message);
+					
+					InetAddress address = null;
+			        int port = 8800;
+			        byte[] data2 = null;
+			        DatagramPacket packet2 = null;
+					address = packet.getAddress();
+		            port = packet.getPort();
+		            data2 = ("receive: " + info).getBytes();
+		            packet2 = new DatagramPacket(data2, data2.length, address, port);
+		            socket.send(packet2);
+					
 					messagebox.setText(message);
 					messages = message.split(":");
-					if(messages.length>=2){
-						type= messages[0];
-						info= messages[1];
+					if (messages.length >= 2) {
+						type = messages[0];
+						info = messages[1];
 						if(type.equals("mouse"))
 							MouseMove(info);
 						if(type.equals("leftButton"))

@@ -1,0 +1,6 @@
+{
+    "face_detector": "drishti_face_gray_64x64.cpb",
+    "eye_model_regressor": "drishti_full_eye_model.cpb",
+    "face_landmark_regressor": "drishti_full_face_model.cpb",
+    "face_detector_mean": "drishti_face_gray_64x64_mean.json"
+}

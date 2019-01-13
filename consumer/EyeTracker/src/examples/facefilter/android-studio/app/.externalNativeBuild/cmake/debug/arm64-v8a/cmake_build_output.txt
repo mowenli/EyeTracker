@@ -1,0 +1,80 @@
+HUNTER_RUN_UPLOAD: OFF
+[hunter *** DEBUG *** 2018-12-15T11:26:59] HUNTER_ROOT set using SYSTEMDRIVE environment variable
+[hunter *** DEBUG *** 2018-12-15T11:26:59] HUNTER_ROOT: C:/.hunter
+[hunter *** DEBUG *** 2018-12-15T11:26:59] Settings (initialize):
+[hunter *** DEBUG *** 2018-12-15T11:26:59]   HunterGate done (NO)
+[hunter *** DEBUG *** 2018-12-15T11:26:59]   Cache init (NO)
+Android: Targeting API '24' with architecture 'arm64', ABI 'arm64-v8a', and processor 'aarch64'
+Android: Selected Clang toolchain 'aarch64-linux-android-clang' with GCC toolchain 'aarch64-linux-android-4.9'
+Check for working C compiler: C:/Users/StellaSong/AppData/Local/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe
+Check for working C compiler: C:/Users/StellaSong/AppData/Local/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works
+Detecting C compiler ABI info
+Detecting C compiler ABI info - done
+Detecting C compile features
+Detecting C compile features - done
+Check for working CXX compiler: C:/Users/StellaSong/AppData/Local/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe
+Check for working CXX compiler: C:/Users/StellaSong/AppData/Local/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works
+Detecting CXX compiler ABI info
+Detecting CXX compiler ABI info - done
+Detecting CXX compile features
+Detecting CXX compile features - done
+CMAKE_INSTALL_PREFIX: C:/Program Files (x86)/drishtisdk
+Performing Test COMPILER_SUPPORTS_NO_NARROWING
+Performing Test COMPILER_SUPPORTS_NO_NARROWING - Success
+Performing Test COMPILER_SUPPORTS_NO_UNUSED_PARAMETER
+Performing Test COMPILER_SUPPORTS_NO_UNUSED_PARAMETER - Success
+Performing Test COMPILER_SUPPORTS_NO_UNUSED_LOCAL_TYPEDEFS
+Performing Test COMPILER_SUPPORTS_NO_UNUSED_LOCAL_TYPEDEFS - Success
+Performing Test COMPILER_SUPPORTS_NO_UNKNOWN_ATTRIBUTES
+Performing Test COMPILER_SUPPORTS_NO_UNKNOWN_ATTRIBUTES - Success
+Performing Test COMPILER_SUPPORTS_NO_SHORTEN_64_TO_32
+Performing Test COMPILER_SUPPORTS_NO_SHORTEN_64_TO_32 - Success
+[hunter *** DEBUG *** 2018-12-15T11:27:22] Single-configuration generator
+[hunter *** DEBUG *** 2018-12-15T11:27:22] List of cache servers:
+[hunter *** DEBUG *** 2018-12-15T11:27:22]   * https://github.com/elucideye/hunter-cache
+[hunter *** DEBUG *** 2018-12-15T11:27:22] Settings (finalize):
+[hunter *** DEBUG *** 2018-12-15T11:27:22]   HunterGate done (NO)
+[hunter *** DEBUG *** 2018-12-15T11:27:22]   Cache init (NO)
+[hunter *** DEBUG *** 2018-12-15T11:27:22] Variables from HunterGate:
+[hunter *** DEBUG *** 2018-12-15T11:27:22]   HUNTER_GATE_ROOT: C:/.hunter
+[hunter *** DEBUG *** 2018-12-15T11:27:22]   HUNTER_GATE_VERSION: 0.23.14
+[hunter *** DEBUG *** 2018-12-15T11:27:22]   HUNTER_GATE_SHA1: f58bcf274f29097ac380bfe4955d2a66f077e741
+[hunter *** DEBUG *** 2018-12-15T11:27:22] Set CMAKE_DEBUG_POSTFIX to: d
+[hunter] Calculating Toolchain-SHA1
+[hunter *** DEBUG *** 2018-12-15T11:27:22] [D:/Study/paper/tools/drishti/src/examples/facefilter/android-studio/app/.externalNativeBuild/cmake/debug/arm64-v8a/_3rdParty/Hunter/toolchain] > "D:/Instrument/C++/cmake-3.13.1-win64-x64/bin/cmake.exe" "-DTOOLCHAIN_INFO_FILE=D:/Study/paper/tools/drishti/src/examples/facefilter/android-studio/app/.externalNativeBuild/cmake/debug/arm64-v8a/_3rdParty/Hunter/toolchain/toolchain.info.NOLF" "-DCMAKE_TOOLCHAIN_FILE=D:/Study/paper/tools/drishti/src/examples/facefilter/android-studio/app/.externalNativeBuild/cmake/debug/arm64-v8a/generated/toolchain.cmake" "-DHUNTER_SELF=C:/.hunter/_Base/Download/Hunter/0.23.14/f58bcf2/Unpacked" "-GNinja" "-HD:/Study/paper/tools/drishti/src/examples/facefilter/android-studio/app/.externalNativeBuild/cmake/debug/arm64-v8a/_3rdParty/Hunter/toolchain" "-BD:/Study/paper/tools/drishti/src/examples/facefilter/android-studio/app/.externalNativeBuild/cmake/debug/arm64-v8a/_3rdParty/Hunter/toolchain/_builds" "-DCMAKE_MAKE_PROGRAM=D:/Instrument/C++/ninja-win/ninja.exe" "-DCMAKE_RELEASE_POSTFIX=" "-DCMAKE_DEBUG_POSTFIX=d"
+[hunter *** DEBUG *** 2018-12-15T11:27:41] Already exists: C:/.hunter/_Base/f58bcf2/4e02b95/toolchain.info
+[hunter] Calculating Config-SHA1
+>:>:>:>:>:>:>:>:>:>:>:>:>:>:>:>:>: D:/Study/paper/tools/drishti/src/examples/drishti-upload/cmake/Modules;C:/.hunter/_Base/Download/Hunter/0.23.14/f58bcf2/Unpacked/cmake/modules;C:/.hunter/_Base/Download/Hunter/0.23.14/f58bcf2/Unpacked/cmake/find;D:/Study/paper/tools/drishti/cmake/Modules <:<:<:<:<:<:<:<:<:<:<:<:<:<:<:<:<:<:<:<:<:<:<:
+-- config.cmake --
+  MSVC: 
+  APPLE: 
+  ANDROID: 1
+  IOS: 
+  is_linux: 0
+  XCODE: 
+[hunter] HUNTER_ROOT: C:/.hunter
+[hunter *** DEBUG *** 2018-12-15T11:27:50] HUNTER_TOOLCHAIN_ID_PATH: C:/.hunter/_Base/f58bcf2/4e02b95
+[hunter *** DEBUG *** 2018-12-15T11:27:50] HUNTER_CONFIGURATION_TYPES: Release;Debug
+[hunter *** DEBUG *** 2018-12-15T11:27:50] HUNTER_BUILD_SHARED_LIBS: 
+[hunter] [ Hunter-ID: f58bcf2 | Toolchain-ID: 4e02b95 | Config-ID: 7031e6f ]
+[hunter *** DEBUG *** 2018-12-15T11:27:50] load: C:/.hunter/_Base/Download/Hunter/0.23.14/f58bcf2/Unpacked/cmake/projects/check_ci_tag/hunter.cmake
+[hunter *** DEBUG *** 2018-12-15T11:27:52] check_ci_tag versions available: [1.0.0]
+[hunter *** DEBUG *** 2018-12-15T11:27:52] Package 'check_ci_tag' CONFIGURATION_TYPES: Release;Debug
+[hunter *** DEBUG *** 2018-12-15T11:27:52] Package 'check_ci_tag' is cacheable: YES
+[hunter *** DEBUG *** 2018-12-15T11:27:52] Install to: C:/.hunter/_Base/f58bcf2/4e02b95/7031e6f/Install
+[hunter] CHECK_CI_TAG_ROOT: C:/.hunter/_Base/f58bcf2/4e02b95/7031e6f/Install (ver.: 1.0.0)
+[hunter *** DEBUG *** 2018-12-15T11:27:52] Package already installed: check_ci_tag
+[hunter *** DEBUG *** 2018-12-15T11:27:52] load: C:/.hunter/_Base/Download/Hunter/0.23.14/f58bcf2/Unpacked/cmake/projects/check_ci_tag/hunter.cmake ... end
+CMake Warning (dev) at D:\Study\paper\tools\drishti\CMakeLists.txt:102 (find_package):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  Environment variable check_ci_tag_ROOT is set to:
+
+    C:/.hunter/_Base/f58bcf2/4e02b95/7031e6f/Install
+
+  For compatibility, CMake is ignoring the variable.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+Configuring done

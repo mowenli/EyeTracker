@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+
+    <EditText
+        android:id="@+id/IpEditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/SocketEditText"
+        android:text="172.20.10.2" />
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/IpEditText"
+        android:layout_alignBottom="@+id/IpEditText"
+        android:layout_alignParentLeft="true"
+        android:text="电脑IP："
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/SocketEditText"
+        android:layout_width="102dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/IpEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:inputType="number"
+        android:text="8089" >
+
+        <requestFocus />
+    </EditText>
+
+
+    <Button
+        android:id="@+id/ConnectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SocketEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:text="手机连接电脑" />
+
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/SocketEditText"
+        android:layout_alignBottom="@+id/SocketEditText"
+        android:layout_alignParentLeft="true"
+        android:text="端口号："
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

@@ -278,8 +278,4 @@
 - 实现客户端与服务端连接
 - 实现眼动识别，控制电脑鼠标上下左右移动
 
-效果：
-
-<video id="video" controls="" preload="none" poster="./pic/test.jpg">
-  <source id="mp4" src="./pic/test.mp4" type="video/mp4">
-</video>
+效果：见./pic/test.mp4文件

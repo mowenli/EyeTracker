@@ -1,14 +1,3 @@
-/*
-  FaceFilterRenderer.java
-  
-  Implementation of the facefilter rendering routines
-
-  Copyright 2017-2018 Elucideye, Inc. All rights reserved. [All modifications]
-  
-  This file is released under the 3 Clause BSD License. [All modifications]
-
-  Reference: http://maninara.blogspot.com/2015/03/render-camera-preview-using-opengl-es.html
-*/
 package com.elucideye.facefilter;
 
 import android.opengl.GLSurfaceView;

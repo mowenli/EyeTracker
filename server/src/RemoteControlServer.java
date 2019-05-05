@@ -32,22 +32,22 @@ public class RemoteControlServer extends JFrame {
 	private static int port;
 	private static double mx;	//电脑鼠标的横坐标
 	private static double my;	//电脑鼠标的纵坐标
-	ServerThread serverthread; //初始化线程
+	ServerThread serverthread;
 	final JTextField messagebox;
 	final JTextField field;
 	final JButton stopbutton;
 	final JButton startbutton;
-	static int menux  =0; //menux信号量 0表示未开启 1表示开启 2表示暂停
-	String message =null;
-	String[] messages =null;
-	String type =null;
-	String info =null;
-	public RemoteControlServer(){
+	static int menux = 0; //menux信号量 0表示未开启 1表示开启 2表示暂停
+	String message = null;
+	String[] messages = null;
+	String type = null;
+	String info = null;
+	public RemoteControlServer() {
 		super();
         setTitle("远程控制");
         setSize(230, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Toolkit toolkit = getToolkit(); // 获得Toolkit对象
+        Toolkit toolkit = getToolkit();
         Dimension dimension = toolkit.getScreenSize(); // 获得Dimension对象
         int screenHeight = dimension.height; // 获得屏幕的高度
         int screenWidth = dimension.width; // 获得屏幕的宽度
@@ -57,9 +57,8 @@ public class RemoteControlServer extends JFrame {
         getContentPane().setLayout(null);
         final JLabel label = new JLabel();
         try {
-			label.setText("本机IP："+InetAddress.getLocalHost().getHostAddress());
+			label.setText("本机IP：" + InetAddress.getLocalHost().getHostAddress());
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         label.setBounds(10, 20, 300, 25);
@@ -67,24 +66,24 @@ public class RemoteControlServer extends JFrame {
         label.setFont(font);
         getContentPane().add(label);
         
-        final JLabel label2 =new JLabel();
+        final JLabel label2 = new JLabel();
     	label2.setText("请输入端口号：");
     	label2.setBounds(10, 50, 100, 25);
     	getContentPane().add(label2);
     	
     	field = new JTextField();
-    	field.setBounds(110,50,90,25);
+    	field.setBounds(110, 50, 90, 25);
     	getContentPane().add(field);
         
     	startbutton = new JButton();
     	startbutton.setText("开启");
-    	startbutton.setBounds(10,90, 80, 25);
+    	startbutton.setBounds(10, 90, 80, 25);
     	getContentPane().add(startbutton);
     	
     	stopbutton = new JButton();
     	stopbutton.setText("停止");
     	stopbutton.setEnabled(false);
-    	stopbutton.setBounds(120,90, 80, 25);
+    	stopbutton.setBounds(120, 90, 80, 25);
     	getContentPane().add(stopbutton);
     	
         final JLabel label3 =new JLabel();
@@ -98,7 +97,7 @@ public class RemoteControlServer extends JFrame {
     	getContentPane().add(label4);
     	
     	messagebox = new JTextField();
-    	messagebox.setBounds(10,180,190,25);
+    	messagebox.setBounds(10, 180, 190, 25);
     	messagebox.enable(false);
     	getContentPane().add(messagebox);
     	
@@ -107,20 +106,20 @@ public class RemoteControlServer extends JFrame {
             	String str  = field.getText().trim();
             	int num;
             	if(str.equals("")){
-            		JOptionPane.showMessageDialog(null,"输入信息不能为空");
+            		JOptionPane.showMessageDialog(null, "输入信息不能为空");
             		return;
             	}
-            	try{
+            	try {
             		num = Integer.parseInt(str);
-            	}catch(Exception e){
-            		JOptionPane.showMessageDialog(null,"端口号应该为数字");
+            	} catch(Exception e) {
+            		JOptionPane.showMessageDialog(null, "端口号应该为数字");
             		return;
             	}
-            	if(num<0||num>65535){
-            		JOptionPane.showMessageDialog(null,"端口号应该大于0小于65535");
+            	if (num < 0 || num > 65535) {
+            		JOptionPane.showMessageDialog(null, "端口号应该大于0小于65535");
             		return;
             	}
-            	port=num;
+            	port = num;
             	stopbutton.setEnabled(true);
             	startbutton.setEnabled(false);
             	start();
@@ -145,7 +144,6 @@ public class RemoteControlServer extends JFrame {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException 
 				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -176,12 +174,10 @@ public class RemoteControlServer extends JFrame {
 			menux=2;
 			messagebox.setText("暂停信息监听");
 		}
-		
 	}
 	
-	
 	public class ServerThread extends Thread {
-    	public void run(){
+    	public void run() {
     		try {
     			//创建一个DatagramSocket对象，并指定监听的端口号
     			DatagramSocket socket;
@@ -222,18 +218,9 @@ public class RemoteControlServer extends JFrame {
 						info = messages[1];
 						if(type.equals("mouse"))
 							MouseMove(info);
-						if(type.equals("leftButton"))
-							LeftButton(info);
-						if(type.equals("rightButton"))
-							RightButton(info);
-						if(type.equals("mousewheel"))
-							MouseWheel(info);
-						if(type.equals("keyboard"))
-							KeyBoard(info);
 					}
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}
@@ -245,9 +232,9 @@ public class RemoteControlServer extends JFrame {
 			float px = Float.valueOf(x);
 			float py = Float.valueOf(y);
 			
-			PointerInfo pinfo = MouseInfo.getPointerInfo();		//得到鼠标的坐标
+			PointerInfo pinfo = MouseInfo.getPointerInfo();
 			java.awt.Point p = pinfo.getLocation();
-			mx=p.getX();	//得到当前电脑鼠标的坐标
+			mx=p.getX();
 			my=p.getY();
 			java.awt.Robot robot;
 			try {
@@ -259,177 +246,6 @@ public class RemoteControlServer extends JFrame {
 				e.printStackTrace();
 			}
 			
-    	}
-    	
-    	public void LeftButton(String info) throws AWTException{
-    		java.awt.Robot robot = new Robot();
-    		if(info.equals("down"))
-				robot.mousePress(InputEvent.BUTTON1_MASK);				
-    		else if(info.equals("release"))
-    			robot.mouseRelease(InputEvent.BUTTON1_MASK);
-    		else if(info.equals("up"))
-    			robot.mouseRelease(InputEvent.BUTTON1_MASK);
-    		else if(info.equals("click")){
-    			robot.mousePress(InputEvent.BUTTON1_MASK);
-    			robot.mouseRelease(InputEvent.BUTTON1_MASK);
-    		}
-    	}
-    	
-    	public void RightButton(String info) throws AWTException{
-    		java.awt.Robot robot = new Robot();
-    		if(info.equals("down"))
-				robot.mousePress(InputEvent.BUTTON3_MASK);				
-    		else if(info.equals("release"))
-    			robot.mouseRelease(InputEvent.BUTTON3_MASK);
-    		else if(info.equals("up"))
-    			robot.mouseRelease(InputEvent.BUTTON3_MASK);
-    	}
-    	
-    	public void MouseWheel(String info)throws AWTException{
-    		java.awt.Robot robot = new Robot();
-    		float num = Float.valueOf(info);
-    		if(num>0)
-    			robot.mouseWheel(1);
-    		else
-    			robot.mouseWheel(-1);
-    	}
-    	
-    	public void KeyBoard(String info)throws AWTException{
-    		String args[]=info.split(",");
-    		String type=null;
-    		String cont=null;
-    		String keystate =null;
-    		java.awt.Robot robot = new Robot();
-    		if(args.length==2){
-    			type = args[0];
-    			cont = args[1];
-    		}
-    		if(args.length==3){
-    			type = args[0];
-    			cont = args[1];
-    			keystate = args[2];
-    		}
-    		
-    		if(type.equals("message")){
-    			Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-    			cb.setContents(new StringSelection(cont), null);//调用粘贴板
-    
-    			
-    			robot.keyPress(KeyEvent.VK_CONTROL);
-    			robot.keyPress(KeyEvent.VK_V);
-    			robot.keyRelease(KeyEvent.VK_CONTROL);
-    			robot.keyRelease(KeyEvent.VK_V);
-    		}else if(type.equals("key")){
-    			if(cont.equals("BackSpace")){
-    				if(keystate.equals("click")){
-    					robot.keyPress(KeyEvent.VK_BACK_SPACE);
-    					robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-    				}
-    			}
-    			if(cont.equals("Enter")){
-    				if(keystate.equals("click")){
-    					robot.keyPress(KeyEvent.VK_ENTER);
-    					robot.keyRelease(KeyEvent.VK_ENTER);
-    				}
-    			}
-    			if(cont.equals("Up")){
-    				if(keystate.equals("click")){
-    					robot.keyPress(KeyEvent.VK_UP);
-    					robot.keyRelease(KeyEvent.VK_UP);
-    				}
-    					
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_UP);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_UP);
-    			}
-    			if(cont.equals("Down")){
-    				if(keystate.equals("click")){
-    					robot.keyPress(KeyEvent.VK_DOWN);
-    					robot.keyRelease(KeyEvent.VK_DOWN);
-    				}
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_DOWN);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_DOWN);
-    			}
-    			if(cont.equals("Left")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_LEFT);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_LEFT);
-    			}
-    			if(cont.equals("Right")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_RIGHT);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_RIGHT);
-    			}
-    			if(cont.equals("W")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_W);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_W);
-    			}
-    			if(cont.equals("S")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_S);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_S);
-    			}
-    			if(cont.equals("A")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_A);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_A);
-    			}
-    			if(cont.equals("S")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_S);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_S);
-    			}
-    			
-    			if(cont.equals("Ctrl")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_CONTROL);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_CONTROL);
-    				if(keystate.equals("click")){
-    					robot.keyPress(KeyEvent.VK_CONTROL);
-    					robot.keyRelease(KeyEvent.VK_CONTROL);
-    				}
-    			}
-    			
-    			if(cont.equals("Z")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_Z);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_Z);
-    				if(keystate.equals("click")){
-    					robot.keyPress(KeyEvent.VK_Z);
-    					robot.keyRelease(KeyEvent.VK_Z);
-    				}
-    			}
-    			
-    			if(cont.equals("Space")){
-    				if(keystate.equals("down"))
-    					robot.keyPress(KeyEvent.VK_SPACE);
-    				if(keystate.equals("up"))
-    					robot.keyRelease(KeyEvent.VK_SPACE);
-    				if(keystate.equals("click")){
-    					robot.keyPress(KeyEvent.VK_SPACE);
-    					robot.keyRelease(KeyEvent.VK_SPACE);
-    				}
-    			}
-    		}else if(type.equals("dosmessage")){
-    			Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-    			cb.setContents(new StringSelection(cont), null);//调用粘贴板
-    			robot.mousePress(InputEvent.BUTTON3_MASK);
-    			robot.mouseRelease(InputEvent.BUTTON3_MASK);
-				robot.keyPress(KeyEvent.VK_P);
-				robot.keyRelease(KeyEvent.VK_P);
-    		}
     	}
 	}
 

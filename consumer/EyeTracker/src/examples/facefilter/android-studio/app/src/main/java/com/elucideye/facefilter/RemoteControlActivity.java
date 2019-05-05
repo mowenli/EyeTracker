@@ -39,14 +39,15 @@ public class RemoteControlActivity extends Activity {
                     {
                         try {
                             Log.i("~~~", "onClick: ");
-                            //创建DatagramSocket，实现数据发送和接收
+                            // 创建DatagramSocket，实现数据发送和接收
                             DatagramSocket socket = new DatagramSocket();
-                            //创建一个InetAddree
-                            InetAddress serverAddress = InetAddress.getByName(ipnum);
-                            byte[] data = "connect to server: 1\n".getBytes();//将字符串转换为字节数组
-                            //创建数据报
+                            // 创建一个InetAddree
+                            InetAddress serverAddress = InetAddress.getByName(Settings.ipnum);
+                            // 将字符串转换为字节数组
+                            byte[] data = "connect to server: 1\n".getBytes();
+                            // 创建数据报
                             DatagramPacket packet = new DatagramPacket(data, data.length, serverAddress, Settings.scoketnum);
-                            //向服务器端发送数据报
+                            // 向服务器端发送数据报
                             socket.send(packet);
 
                             //接收服务器响应数据

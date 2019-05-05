@@ -20,9 +20,6 @@ public class FaceFilterFragment extends Fragment implements ActivityCompat.OnReq
     private static String TAG = "ElucideyeFaceFilterFragment";
     private FaceFilterCameraManager mCameraManager = null;
 
-    /**
-    * An {@link FaceFilterGLSurfaceView} for camera preview.
-    */
     private FaceFilterGLSurfaceView mGLSurfaceView;
 
     public static FaceFilterFragment newInstance(FaceFilterCameraManager cameraManager) {

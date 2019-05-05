@@ -25,8 +25,6 @@ import java.util.Arrays;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-// Method of this class can be called from different threads.
-// All public methods guarded with mCameraLock.
 public class FaceFilterCameraManager {
     static private int REQUEST_CAMERA_PERMISSION = 1;
     static private String TAG = "FaceFilterCameraManager";
@@ -119,15 +117,12 @@ public class FaceFilterCameraManager {
     // Thread: "UI thread"
     public void checkPermissions() {
         try {
-            // Probably lock not needed here, just for unification.
             mCameraLock.acquire();
 
-            int p = ContextCompat.checkSelfPermission(
-                mActivity, Manifest.permission.WRITE_CALENDAR);
+            int p = ContextCompat.checkSelfPermission(mActivity, Manifest.permission.WRITE_CALENDAR);
             if (p == PackageManager.PERMISSION_GRANTED) {
                 permissionsGranded = true;
             } else {
-                // Permission is not granted
                 mActivity.requestPermissions(new String[] { Manifest.permission.CAMERA }, REQUEST_CAMERA_PERMISSION);
             }
             analyzeState();
@@ -171,21 +166,15 @@ public class FaceFilterCameraManager {
 
         if (cameraIsWorking) {
             if (newCameraIsWorking) {
-                // We got camera working and new state is "working" too.
-                // Nothing changed, just continue.
                 return;
             }
 
-            // Currently camera is working, but new state is "not working".
             closeCamera();
             cameraIsWorking = false;
             return;
         }
 
-        // Camera is not working here.
-
         if (newCameraIsWorking) {
-            // New state is "working", starting camera.
             openCamera();
             cameraIsWorking = true;
             return;
@@ -306,7 +295,7 @@ public class FaceFilterCameraManager {
                     int area = psize.getHeight() * psize.getWidth();
                     if (area > maxArea) {
                         maxArea = area;
-                        previewSize = psize; // select max size
+                        previewSize = psize;
                     }
                 }
 
